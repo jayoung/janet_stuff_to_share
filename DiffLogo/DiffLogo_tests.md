@@ -20,8 +20,11 @@ library(motifStack)
 ## Make test amino acid alignments
 
 Create two alignments, so we can test DiffLogo as well as single logo
-plots. In `aa_aln_1`, second position is always F, in `aa_aln_2` it’s
-always G.
+plots.
+
+NOTICE that in `aa_aln_1`, second position is always F, in `aa_aln_2`
+it’s always G. This is how we’ll know whether the plot is correct or
+not.
 
 ``` r
 aa_aln_1 <- AAStringSet(c("QFQSM", "QFAYS", "KFAAV", 
