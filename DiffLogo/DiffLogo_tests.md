@@ -6,6 +6,8 @@ Janet Young
 
 Goal - test some issues with DiffLogo.
 
+Filed an issue here: <https://github.com/mgledi/DiffLogo/issues/31>
+
 # Load libraries
 
 ``` r
