@@ -1,0 +1,129 @@
+---
+title: "DiffLogo tests"
+author: "Janet Young\n"
+date: "`r Sys.Date()`\n"
+output: github_document
+always_allow_html: true
+---
+
+Goal - test some issues with DiffLogo.  
+
+
+# Load libraries
+
+```{r setup, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+library(tidyverse)
+library(Biostrings)
+library(ggseqlogo)
+library(DiffLogo)
+library(motifStack)
+```
+
+
+## Make test amino acid alignments
+
+
+Create two alignments, so we can test DiffLogo as well as single logo plots. In `aa_aln_1`, second position is always F, in `aa_aln_2` it's always G. 
+
+```{r}
+aa_aln_1 <- AAStringSet(c("QFQSM", "QFAYS", "KFAAV", 
+                          "LFRCW", "SFFSS", "DFRSL",
+                          "VFRSV", "TFAMC", "SFVLE"))
+aa_aln_2 <- AAStringSet(c("QGQSM", "QGAYS", "KGAAV"))
+```
+
+
+
+## Get raw counts and freq matrix
+
+First get counts and frequencies for the entire alignment:
+
+```{r get counts and freqs matrices}
+#### counts and freqs for aa_aln_1
+# consensusMatrix is a Biostrings function that counts amino acids at each position
+aa_aln_counts_matrix_1 <- consensusMatrix(aa_aln_1)[1:20,]
+
+# pcm2pfm is a function from motifStack
+# we also convert to data frame to avoid a warning from DiffLogo
+aa_aln_freq_matrix_1 <- pcm2pfm(aa_aln_counts_matrix_1) |> 
+    as.data.frame()
+
+#### counts and freqs for aa_aln_2}
+aa_aln_counts_matrix_2 <- consensusMatrix(aa_aln_2)[1:20,]
+
+aa_aln_freq_matrix_2 <- pcm2pfm(aa_aln_counts_matrix_2) |> 
+    as.data.frame()
+```
+
+
+
+
+Show counts for `aa_aln_1`
+
+```{r}
+aa_aln_counts_matrix_1
+```
+
+
+
+## Make logo with ggseqlogo
+
+For comparison, make a logo plot with ggseqlogo
+
+
+Test - I can supply the frequency matrix, but only if I make it a matrix (data.frame doesn't work)
+
+
+```{r, fig.height=3, fig.width=3}
+## I use the freq matrix rather than the seqs, to avoid ggseqlogo's small sample correction
+ggseqlogo(as.matrix(aa_aln_freq_matrix_1),
+          method="bits") +
+    guides(fill="none")
+```
+
+
+
+## Make DiffLogo::seqLogo single logo plot
+
+The rows of the matrix are NOT in the same order as ASN$chars so the single DiffLogo looks WRONG!   DiffLogo doesn't check matrix order.
+
+```{r, fig.height=3, fig.width=3}
+DiffLogo::seqLogo(aa_aln_freq_matrix_1, 
+                  alphabet = ASN,
+                  drawLines=20)
+```
+
+We can get the correct plot if we reorder the matrix rows:
+
+```{r, fig.height=3, fig.width=3}
+DiffLogo::seqLogo(aa_aln_freq_matrix_1[ASN$chars,], 
+                  alphabet = ASN,
+                  drawLines=20)
+```
+
+```{r, fig.height=5, fig.width=3}
+diffLogoFromPwm( aa_aln_freq_matrix_2,
+                 aa_aln_freq_matrix_1, 
+                 alphabet = ASN,
+                 align_pwms=FALSE)
+```
+
+Now reorder the matrices to match ASN order:
+
+```{r, fig.height=5, fig.width=3}
+diffLogoFromPwm( aa_aln_freq_matrix_2[ASN$chars,],
+                 aa_aln_freq_matrix_1[ASN$chars,], 
+                 alphabet = ASN,
+                 align_pwms=FALSE)
+```
+
+
+# Finished
+
+show R version used, and package versions
+
+```{r sessionInfo}
+sessionInfo()
+```
+
