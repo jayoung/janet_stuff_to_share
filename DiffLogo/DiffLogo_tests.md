@@ -83,9 +83,6 @@ aa_aln_counts_matrix_1
 
 For comparison, make a logo plot with ggseqlogo
 
-Test - I can supply the frequency matrix, but only if I make it a matrix
-(data.frame doesn’t work)
-
 ``` r
 ## I use the freq matrix rather than the seqs, to avoid ggseqlogo's small sample correction
 ggseqlogo(as.matrix(aa_aln_freq_matrix_1),
@@ -117,7 +114,8 @@ DiffLogo::seqLogo(aa_aln_freq_matrix_1,
 
 ![](DiffLogo_tests_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-We can get the correct plot if we reorder the matrix rows:
+We can get the correct plot if we reorder the matrix rows to match the
+alphabet order:
 
 ``` r
 DiffLogo::seqLogo(aa_aln_freq_matrix_1[ASN$chars,], 
@@ -126,6 +124,12 @@ DiffLogo::seqLogo(aa_aln_freq_matrix_1[ASN$chars,],
 ```
 
 ![](DiffLogo_tests_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Same is true for the diffLogoFromPwm function - we get the wrong letters
+in the plot unless we reorder the matrix rows to match the Alphabet’s
+chars.
+
+Here’s the wrong plot:
 
 ``` r
 diffLogoFromPwm( aa_aln_freq_matrix_2,
@@ -136,7 +140,8 @@ diffLogoFromPwm( aa_aln_freq_matrix_2,
 
 ![](DiffLogo_tests_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-Now reorder the matrices to match ASN order:
+Here’s the correct plot, after reordering the matrices to match ASN
+order:
 
 ``` r
 diffLogoFromPwm( aa_aln_freq_matrix_2[ASN$chars,],
