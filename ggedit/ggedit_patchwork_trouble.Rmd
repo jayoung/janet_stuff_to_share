@@ -13,6 +13,9 @@ Load packages
 knitr::opts_chunk$set(echo = TRUE)
 library("tidyverse")
 library("patchwork")
+
+
+
 ```
 
 Make some plots
@@ -48,6 +51,9 @@ Use `+` not `|` and we get a different layout (no error)
 Now we load ggedit package (but don't edit the plots at all)
 
 ```{r}
+## to install from github using renv
+# renv::install("yonicd/ggedit")
+
 library("ggedit") 
 ```
 
