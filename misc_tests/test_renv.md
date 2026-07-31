@@ -99,7 +99,7 @@ Sys.getenv()
     ## R_PLATFORM              x86_64-pc-linux-gnu
     ## R_PRINTCMD              /usr/bin/lpr
     ## R_RD4PDF                times,inconsolata,hyper
-    ## R_SESSION_TMPDIR        /tmp/RtmpSgB08E
+    ## R_SESSION_TMPDIR        /tmp/RtmpUvx4xx
     ## R_SHARE_DIR             /usr/local/lib/R/share
     ## R_STRIP_SHARED_LIB      strip --strip-unneeded
     ## R_STRIP_STATIC_LIB      strip --strip-debug
@@ -124,7 +124,7 @@ Sys.getenv()
     ##                         /fh/fast/malik_h/user/jayoung/git_more_repos/janet_stuff_to_share/renv/python/r-reticulate
     ## RMARKDOWN_MATHJAX_PATH
     ##                         /usr/lib/rstudio-server/resources/mathjax-27
-    ## RMARKDOWN_PREVIEW_DIR   /tmp/Rtmps6oxkw
+    ## RMARKDOWN_PREVIEW_DIR   /tmp/RtmpDqkqEn
     ## RS_RPOSTBACK_PATH       /usr/lib/rstudio-server/bin/rpostback
     ## RS_SERVER_RPC_SOCKET_PATH
     ##                         /tmp/59196500/1785460974/rstudio-rserver/session-server-rpc.socket
@@ -145,17 +145,17 @@ Sys.getenv()
     ## RSTUDIO_R_REPO          
     ## RSTUDIO_R_VERSION_LABEL
     ##                         
-    ## RSTUDIO_SESSION_PID     30936
+    ## RSTUDIO_SESSION_PID     31336
     ## RSTUDIO_SESSION_STREAM
     ##                         jayoung-d
     ## RSTUDIO_USER_IDENTITY   jayoung
     ## RSTUDIO_VERSION         2025.09.2.418
     ## RSTUDIOAPI_IPC_REQUESTS_FILE
-    ##                         /tmp/Rtmps6oxkw/rstudio-ipc-requests-78d8e1f393c.rds
+    ##                         /tmp/RtmpDqkqEn/rstudio-ipc-requests-7a6811eaf53d.rds
     ## RSTUDIOAPI_IPC_RESPONSE_FILE
-    ##                         /tmp/Rtmps6oxkw/rstudio-ipc-response-78d81598e4a4.rds
+    ##                         /tmp/RtmpDqkqEn/rstudio-ipc-response-7a6865f7b36b.rds
     ## RSTUDIOAPI_IPC_SHARED_SECRET
-    ##                         5314de20-ff26-4a57-b352-63c91beaac54
+    ##                         4069dd9c-8388-47f4-ac2a-7178d7fb9af3
     ## SED                     /usr/bin/sed
     ## SF_PARTNER              posit_rstudio
     ## SHELL                   /bin/bash
